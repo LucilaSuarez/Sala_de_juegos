@@ -1,0 +1,69 @@
+/* =========================================================
+    ESTILOS GLOBALES — Playroom
+    Aqui se definen variables CSS y estilos que afectan a
+    TODA la aplicacion. Los estilos especificos de cada
+    componente van en su propio archivo .css.
+========================================================= */
+
+/* Variables CSS: permiten centralizar los valores de color, 
+fuente y espaciado. Si se necesita cambiar el color
+principal, se cambia en un solo lugar.                    */
+:root {
+    --uh-primary:       #171d25;   /* azul institucional oscuro  */
+    --uh-primary-light: #1f2a3a;   /* azul para hovers           */
+    --uh-accent:        #2a475e;   /* dorado/ambar de acento     */
+    --uh-bg:            #f4f6f9;   /* fondo general de la app    */
+    --uh-surface:       #ffffff;   /* fondo de cards y paneles   */
+    --uh-text:          #1e293b;   /* texto principal            */
+    --uh-text-muted:    #acb2b8;   /* texto secundario           */
+    --uh-success:       #16a34a;   /* color para estado activo   */
+    --uh-danger:        #dc2626;   /* color para estado inactivo */
+    --uh-border:        #dde3ed;   /* borde de elementos         */
+    --uh-radius:        0.6rem;    /* radio de bordes uniforme   */
+    --uh-shadow:        0 2px 12px rgba(26, 58, 92, 0.08);
+}
+
+/* Tipografia global: se aplica la fuente Inter a todo el body */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--uh-bg);
+    color: var(--uh-text);
+    font-size: 0.95rem;
+}
+
+
+.uh-btn {
+    color: white;
+    background: transparent;
+    border: none;
+    font-weight: 500;
+}
+
+.uh-btn:hover {
+    color: var(--uh-text-muted);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding-bottom: 2rem;
+}
+
+/* Estilos para el componente quien-soy */
+.repo-item {
+    background: #ffffff;
+    border-radius: var(--uh-radius);
+    padding: 1rem;
+    width: 100%;
+    box-shadow: 0 4px 10px #263448;
+}

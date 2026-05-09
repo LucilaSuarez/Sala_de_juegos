@@ -1,0 +1,43 @@
+.info-card {
+    min-height: 330px;
+    background: linear-gradient(180deg, #ebedf0, #d8dbde);
+    color: #263448;
+
+    border-radius: var(--uh-radius);
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    box-shadow: 0 8px 20px #263448;
+    transition: all 0.2s ease;
+
+    height: 100%; 
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px #263448;
+}
+
+.info-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .info-card {
+        padding: 1.5rem;
+    }
+
+    .info-card h3 {
+        font-size: 1.3rem;
+    }
+}

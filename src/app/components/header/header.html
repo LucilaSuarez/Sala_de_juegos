@@ -1,0 +1,33 @@
+<!-- navbar de Bootstrap: barra de navegacion fija en la parte superior -->
+<!-- navbar-dark y bg personalizado dan el estilo institucional oscuro   -->
+<nav class="navbar navbar-dark uh-navbar">
+    <div class="container">
+
+    <!-- Marca / logo de la aplicacion -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <!-- Bootstrap Icon: icono de personas para una app de usuarios -->
+            <i class="bi bi-browser-firefox fs-2"></i>
+            <span class="fw-bold fs-3">{{ title }}</span>
+        </a>
+
+        <!-- Informacion institucional del lado derecho -->
+        <span class="navbar-text text-white-50 small">
+            <i class="bi bi-mortarboard-fill me-1"></i>
+            Programacion IV &mdash; UTN
+        </span>
+    </div>
+</nav>
+
+<div class="uh-subnavbar">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+    <!-- botones izquierda -->
+        <div class="d-flex gap-3">
+            <button class="btn uh-btn" routerLink="/login">Iniciar sesión</button>
+            <button class="btn uh-btn" routerLink="/registro">Registrarse</button>
+        </div>
+    <!-- boton derecha -->
+        <div>
+            <button class="btn uh-btn" routerLink="/quien-soy">Quién soy</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+.uh-footer {
+    background: #171d25;
+    color: #acb2b8;
+
+    padding: 1rem 0;
+    margin-top: 2rem;
+
+    border-top: 1px solid #263448;
+
+    font-size: 0.85rem;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+}
+
+.uh-footer p {
+    font-size: 0.75rem;
+}
+
+/*responsive*/
+@media (min-width: 768px) {
+    .uh-footer .col-md-4:nth-child(1) {
+        text-align: left;
+    }
+    .uh-footer .col-md-4:nth-child(2) {
+        text-align: center;
+    }
+    .uh-footer .col-md-4:nth-child(3) {
+        text-align: right;
+    }
+}

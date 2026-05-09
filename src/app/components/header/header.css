@@ -1,0 +1,18 @@
+/* uh-navbar: aplicamos el color primario institucional a la barra de navegacion.
+   Bootstrap provee la estructura, nosotros solo personalizamos el color.          */
+.uh-navbar {
+    background-color: var(--uh-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    position: relative;
+}
+
+.navbar-brand {
+    color: var(--uh-text-muted);
+}
+
+.uh-subnavbar {
+    background: #263448 ;
+    padding: 0.8rem 0;
+}

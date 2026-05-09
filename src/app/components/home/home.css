@@ -1,0 +1,84 @@
+.home-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* 🔥 ahora es card, no solo botón */
+
+.game-card {
+    min-height: 330px;
+    background: linear-gradient(180deg, #ebedf0, #d8dbde);
+    color: #263448;
+
+    border-radius: var(--uh-radius);
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    box-shadow: 0 8px 20px #263448;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    height: 100%; 
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px #263448;
+}
+
+.game-card i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #263448;
+}
+
+.game-card img {
+    width: 80%;
+    border-radius: var(--uh-radius);
+    margin-bottom: 1rem;
+}
+
+
+
+@media (max-width: 576px) {
+    .game-card {
+        padding: 1.5rem;
+    }
+
+    .game-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/*probando responsive*/
+/* 📱 TABLET */
+@media (max-width: 768px) {
+    .uh-btn {
+        font-size: 0.9rem;
+    }
+    .uh-subnavbar .container {
+        gap: 1rem;
+    }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 576px) {
+
+    .uh-btn {
+        font-size: 0.8rem;
+    }
+
+    .uh-subnavbar {
+        padding: 0.5rem 0;
+    }
+
+    .uh-subnavbar .container {
+        flex-wrap: wrap; /* 🔥 permite bajar línea si no entra */
+        gap: 0.5rem;
+    }
+}

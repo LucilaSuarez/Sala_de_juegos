@@ -1,0 +1,77 @@
+<div class="container py-4">
+    <div class="row g-4">
+        <!-- PERFIL -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="info-card">
+                <h3 class="mb-3">Hola! soy</h3>
+                <!-- cargando perfil de GitHub -->
+                @if (loading()) {
+                    <div class="alert alert-info text-center">
+                        Cargando perfil...
+                    </div>
+                }
+                <!-- error al cargar el perfil -->
+                @if (error()) {
+                    <div class="alert alert-danger text-center">
+                        {{ error() }}
+                    </div>
+                }
+                <!-- perfil de GitHub cargado correctamente -->
+                @if (!loading() && user(); as u) {
+                    <img [src]="u.avatar_url" class="rounded-circle shadow" width="120">
+                    <h4 class="fw-bold mt-2">{{ u.name }}</h4>
+                    @if (u.bio) {
+                        <p class="text-muted small">{{ u.bio }}</p>
+                    }
+                    <p class="small mb-1"><strong>@{{ u.login }}</strong></p>
+                    <p class="small mb-2">Repos: {{ u.public_repos }}</p>
+                    <a [href]="u.html_url" target="_blank" class="btn btn-dark btn-sm">
+                        <i class="bi bi-github me-1"></i> GitHub
+                    </a>
+                }
+            </div>
+        </div>
+
+        <!-- REPOS -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="info-card">
+                <h3 class="mb-3">Algunos de mis proyectos..</h3>
+                <div class="d-flex flex-column gap-2 w-100" >
+                    @for (repo of repos(); track repo.id) {
+                        <div class="repo-item">
+                            <h6 class="mb-1">{{ repo.name }}</h6>
+                            <p class="small text-muted mb-1">
+                                {{ repo.description || 'Sin descripción' }}
+                            </p>
+                            <a [href]="repo.html_url" target="_blank" class="btn btn-dark btn-sm">
+                                Ver repo →
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- JUEGO -->
+        <div class="col-12 col-md-12 col-lg-4">
+            <div class="info-card">
+                <h3 class="mb-3">Mi juego: Compatibilidad 💖</h3>
+                <p class="small">
+                    Este juego fue elegido por ser un recuerdo de mi infancia, simple, divertido y busca generar interacción inmediata. 
+                </p>
+                <p class="small">
+                    Se basa en calcular el nivel de compatibilidad entre dos nombres de forma aleatoria.
+                </p>
+                <p class="small">
+                    El resultado se genera de forma aleatoria, lo que permite que cada intento sea único y sorprendente.
+                </p>
+                <h6>¿Cómo jugar?</h6>
+                <ul class="small text-start">
+                    <li>Ingresar dos nombres</li>
+                    <li>Presionar calcular</li>
+                    <li>Ver el resultado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
