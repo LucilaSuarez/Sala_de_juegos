@@ -1,1 +1,43 @@
-<p>registro works!</p>
+<div class="register-container">
+    <div class="register-card">
+        <h2 class="mb-4 text-center">
+            Crear cuenta
+        </h2>
+
+        <form (ngSubmit)="onSubmit()">
+            @if(errorMensaje()) {
+                <div class="alert alert-danger">
+                    {{ errorMensaje() }}
+                </div>
+            }
+
+            <div class="mb-3">
+                <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" [(ngModel)]="apellido" name="apellido" placeholder="Apellido" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="number" class="form-control" [(ngModel)]="edad" name="edad" placeholder="Edad" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+
+            <div class="mb-4">
+                <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100" [disabled]="loading()" >
+                @if (loading()) {
+                    Registrando...
+                } @else {
+                    Registrarse
+                }
+            </button>
+        </form>
+    </div>
+</div>
