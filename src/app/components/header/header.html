@@ -1,5 +1,4 @@
 <!-- navbar de Bootstrap: barra de navegacion fija en la parte superior -->
-<!-- navbar-dark y bg personalizado dan el estilo institucional oscuro   -->
 <nav class="navbar navbar-dark uh-navbar">
     <div class="container">
 
@@ -22,8 +21,23 @@
     <div class="container d-flex justify-content-between align-items-center flex-wrap">
     <!-- botones izquierda -->
         <div class="d-flex gap-3">
-            <button class="btn uh-btn" routerLink="/login">Iniciar sesión</button>
-            <button class="btn uh-btn" routerLink="/registro">Registrarse</button>
+            @if (!auth.isAuthenticated()) {
+                <button class="btn uh-btn" routerLink="/login">
+                    Iniciar sesión
+                </button>
+                <button class="btn uh-btn" routerLink="/registro">
+                    Registrarse
+                </button>
+            }
+
+            @if (auth.isAuthenticated()) {
+                <span class="btn uh-btn">
+                    Hola {{ auth.user()?.nombre }}!
+                </span>
+                <button class="btn uh-btn" (click)="logout()">
+                    Cerrar sesión
+                </button>
+            }
         </div>
     <!-- boton derecha -->
         <div>
