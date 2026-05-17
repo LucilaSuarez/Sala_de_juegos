@@ -12,3 +12,14 @@ export interface User {
     nombre?: string;
     email: string;
 }
+
+export interface Mensaje {
+    id?: string;
+    user_id: string;
+    contenido: string;
+    profiles?: {
+        nombre: string;
+        apellido: string;
+    };
+    created_at?: string;
+}

@@ -1,0 +1,37 @@
+<button class="chat-boton" (click)="toggleChat()">
+    <i class="bi bi-chat-fill"></i>
+</button>
+
+@if(abierto()){
+    <div class="chat-container">
+        <div class="chat-header">
+            <h3>Sala de chat</h3>
+            <button (click)="toggleChat()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="chat-mensajes">
+            @for(mensaje of chatService.mensaje(); track mensaje.id){
+                <div class="mensaje" [class.mensaje-propio]="mensaje.user_id === (chatService['auth'].user()?.id)">
+                    <div class="mensaje-header">
+                        <strong>{{ mensaje.profiles?.nombre }} </strong>
+                        <span class="mensaje-hora">{{ mensaje.created_at | date:'shortTime' }}</span>
+                    </div>
+                    <p>{{ mensaje.contenido }}</p>
+                </div>
+            } @empty {
+                <div class="sin-mensajes">
+                    <p>No hay mensajes aún. ¡Sé el primero en enviar uno!</p>
+                </div>
+            }
+        </div>
+
+        <div class="chat-input">
+            <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribí un mensaje..." (keyup.enter)="enviarMensaje()" [disabled]="enviando()">
+            <button (click)="enviarMensaje()" [disabled]="enviando()">
+                @if(enviando()) { Enviando... } @else { Enviar }
+            </button>
+        </div>
+    </div>
+}

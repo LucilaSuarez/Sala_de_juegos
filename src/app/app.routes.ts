@@ -3,6 +3,7 @@ import { Home } from './components/home/home';
 import { Login } from './components/login/login';
 import { Registro } from './components/registro/registro';
 import { QuienSoy } from './components/quien-soy/quien-soy';
+import { Chat } from './components/chat/chat';
 import {  authGuard, publicGuard } from './guards/auth';
 
 export const routes: Routes = [
@@ -11,5 +12,6 @@ export const routes: Routes = [
     { path: 'registro', component: Registro, canActivate: [publicGuard] },
     { path: 'quien-soy', component: QuienSoy },
     { path: '', redirectTo: 'home', pathMatch: 'full' },  
-    { path: '**', redirectTo: 'home' } 
+    { path: '**', redirectTo: 'home' } ,
+    {path: 'chat', component: Chat}
 ];
