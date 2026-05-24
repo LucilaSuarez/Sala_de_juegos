@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from '../../services/chat';
@@ -10,16 +10,22 @@ import { ChatService } from '../../services/chat';
   styleUrl: './chat.css',
 })
 
-export class Chat {
+export class Chat implements OnDestroy {
   chatService = inject(ChatService);
   abierto = signal(false);
   nuevoMensaje = '';
   enviando = signal(false);
 
   toggleChat() {
-    this.abierto.set(!this.abierto());
-    if (this.abierto()) {
-        this.chatService.cargarMensajes();
+    const nuevoEstado = !this.abierto();
+    this.abierto.set(nuevoEstado);
+    if (nuevoEstado) {
+      // Si se abre, cargamos el historial y encendemos el tiempo real
+      this.chatService.cargarMensajes();
+      this.chatService.escucharMensajes();
+    } else {
+      // Si se cierra, apagamos el tiempo real para liberar memoria
+      this.chatService.desconectar();
     }
   }
 
@@ -30,5 +36,9 @@ export class Chat {
     await this.chatService.enviarMensaje(texto);
     this.nuevoMensaje = '';
     this.enviando.set(false);
+  }
+
+  ngOnDestroy() {
+    this.chatService.desconectar();
   }
 }

@@ -11,7 +11,6 @@ import { HttpClient } from '@angular/common/http';
 export class QuienSoy implements OnInit {
 
   private http = inject(HttpClient);
-
   user = signal<any>(null);
   repos = signal<any[]>([]);
   loading = signal(false);
@@ -22,7 +21,6 @@ export class QuienSoy implements OnInit {
     this.loadRepos();
   }
 
-  // 👤 PERFIL DE GITHUB
   loadUser(): void {
     this.loading.set(true);
     this.error.set(null);
@@ -40,7 +38,6 @@ export class QuienSoy implements OnInit {
       });
   }
 
-  // 📦 REPOSITORIOS
   loadRepos(): void {
     this.http.get<any[]>('https://api.github.com/users/LucilaSuarez/repos?per_page=2')
       .subscribe({

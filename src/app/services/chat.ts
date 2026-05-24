@@ -1,4 +1,4 @@
-import { Injectable , signal, inject} from "@angular/core";
+import { Injectable , signal, inject, NgZone} from "@angular/core";
 import { SupabaseService } from "./supabase";
 import { AuthService } from "./auth";
 import { Mensaje } from "../models/models";
@@ -8,20 +8,21 @@ import { Mensaje } from "../models/models";
 })
 export class ChatService {
     private supabase = inject(SupabaseService);
-    private auth = inject(AuthService);
+    public auth = inject(AuthService); // Cambiado a public para acceder limpiamente desde el HTML
+    private zone = inject(NgZone); // <-- El motor de sincronización de Angular
     public mensaje = signal<Mensaje[]>([]);
     private channel: any; // Para almacenar la referencia al canal de suscripción
 
     constructor() { 
-        this.cargarMensajes();
-        this.escucharMensajes();
+        // this.cargarMensajes();
+        // this.escucharMensajes();
     }
 
     async cargarMensajes() {
         const { data , error} = await this.supabase
         .getClient()
         .from('mensaje')
-        .select(`*,profiles(nombre, apellido)`)
+        .select(`*,profiles(nombre)`)
         .order('created_at', { ascending: true });
 
         console.log('Mensajes cargados:', data?.length); // log para verificar la cantidad de mensajes cargados
@@ -33,6 +34,7 @@ export class ChatService {
 
         if (data) {
             this.mensaje.set(data as Mensaje[]);
+            this.hacerScrollAbajo();
         }
     }
 
@@ -57,15 +59,15 @@ export class ChatService {
                     return;
                 }
                 if (data) {
-                    console.log('Agregando mensaje:', data); //log para verificar el mensaje que se va a agregar
-                    this.mensaje.update(mensajes => [...mensajes, data as Mensaje]);
-                    // Desplazar hacia abajo después de agregar el nuevo mensaje DISEÑO UI
-                    setTimeout(() => {
-                        const chatContainer = document.querySelector('.chat-mensajes');
-                        if (chatContainer) {
-                            chatContainer.scrollTop = chatContainer.scrollHeight;
-                        }
-                    }, 100);
+                    this.zone.run(() => {
+                        this.mensaje.update(mensajes => {
+                                if (mensajes.some(m => m.id === data.id)) return mensajes;
+                                return [...mensajes, data as Mensaje];
+                            });
+                        });
+
+                    // Forzamos a Angular a revisar la vista debido al salto asíncrono del tiempo real
+                    this.hacerScrollAbajo(); 
                 }
             }
         )
@@ -89,6 +91,15 @@ export class ChatService {
         }
         console.log('Mensaje enviado exitosamente:', data);
         return data;
+    }
+
+    hacerScrollAbajo() {
+        setTimeout(() => {
+            const chatContainer = document.querySelector('.chat-mensajes');
+            if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }, 100);
     }
 
     // limpiamos la suscripción cuando sea necesario

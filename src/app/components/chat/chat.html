@@ -13,7 +13,7 @@
 
         <div class="chat-mensajes">
             @for(mensaje of chatService.mensaje(); track mensaje.id){
-                <div class="mensaje" [class.mensaje-propio]="mensaje.user_id === (chatService['auth'].user()?.id)">
+                <div class="mensaje" [class.mensaje-propio]="mensaje.user_id === chatService.auth.user()?.id">
                     <div class="mensaje-header">
                         <strong>{{ mensaje.profiles?.nombre }} </strong>
                         <span class="mensaje-hora">{{ mensaje.created_at | date:'shortTime' }}</span>
@@ -30,7 +30,7 @@
         <div class="chat-input">
             <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribí un mensaje..." (keyup.enter)="enviarMensaje()" [disabled]="enviando()">
             <button (click)="enviarMensaje()" [disabled]="enviando()">
-                @if(enviando()) { Enviando... } @else { Enviar }
+                @if(enviando()) { .... } @else { Enviar }
             </button>
         </div>
     </div>
