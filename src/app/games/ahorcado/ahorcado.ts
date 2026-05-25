@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SupabaseService } from '../../services/supabase';
 import { AuthService } from '../../services/auth';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-ahorcado',
@@ -14,12 +15,9 @@ export class Ahorcado implements OnInit, OnDestroy {
   supabase = inject(SupabaseService);
   auth = inject(AuthService);
   cdr = inject(ChangeDetectorRef);
+  http = inject(HttpClient);
 
-  // Palabras (puedes importarlas de tu JSON o dejarlas fijas aquí)
-  listaPalabras: string[] = [
-    "ANGULAR", "SUPABASE", "PROGRAMACION", "JAVASCRIPT", 
-    "COMPONENTE", "PYTHON", "FRONTEND", "BACKEND", "VARIABLE", "FUNCION"
-  ];
+  listaPalabras: string[] = [];
 
   abecedario: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   letrasSeleccionadas: Set<string> = new Set();
@@ -41,12 +39,35 @@ export class Ahorcado implements OnInit, OnDestroy {
   tiempoSegundos = 0;
   intervaloTiempo: any;
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.cargarPalabrasDesdeJson();
     this.iniciarJuego();
   }
 
   ngOnDestroy() {
     this.detenerCronometro();
+  }
+
+  cargarPalabrasDesdeJson(): Promise<void> {
+    return new Promise((resolve) => {
+      const rutaJson = 'ahorcado/palabras/palabras.json'; 
+
+      this.http.get<{ palabras: string[] }>(rutaJson).subscribe({
+        next: (data) => {
+          if (data && data.palabras) {
+            this.listaPalabras = data.palabras;
+            console.log('Palabras cargadas desde JSON con éxito:', this.listaPalabras.length);
+          }
+          resolve();
+        },
+        error: (err) => {
+          console.error('Error al leer el archivo palabras.json, usando backup local:', err);
+          // Plan B si falla la carga del JSON
+          this.listaPalabras = ["ANGULAR", "SUPABASE", "PROGRAMACION"]; 
+          resolve();
+        }
+      });
+    }); 
   }
 
   iniciarJuego() {

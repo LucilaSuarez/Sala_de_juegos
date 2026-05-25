@@ -58,12 +58,11 @@ export class MayorMenor implements OnInit{
     if (valorNuevo === valorActual) {
       this.cartaActual = cartaNueva;
       this.intentos++;
-      // Si la ronda termina aquí porque llegaste al máximo de intentos
       if (this.intentos >= this.maxIntentos) {
         this.juegoTerminado = true;
         await this.guardarResultado();
       }
-      this.cdr.detectChanges(); // <-- OBLIGATORIO AQUÍ antes del return
+      this.cdr.detectChanges();
       return;
     }
     if (tipo === 'mayor') {
