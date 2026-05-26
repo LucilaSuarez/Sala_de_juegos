@@ -1,0 +1,143 @@
+<div class="container py-4">
+    <h2 class="titulo-estadisticas">Estadísticas 🏆</h2>
+
+    <div class="row g-4">
+        <div class="col-12 col-md-6">
+            <div class="game-card">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                    <img src="imagenes/ahorcado_2.png" alt="Ahorcado" style="width: 50px; margin: 0;">
+                    <h3 class="m-0">Ahorcado</h3>
+                </div>
+                
+                @if(rankingAhorcado.length > 0){
+                    <div class="ranking-container">
+                        <div class="ranking-header">
+                            <span>Pos</span>
+                            <span>Jugador</span>
+                            <span>Tiempo</span>
+                            <span>Resultado</span>
+                        </div>
+                        <div class="ranking-lista">
+                            @for(item of rankingAhorcado.slice(0,5); track $index){
+                                <div class="ranking-item">
+                                    <span class="posicion">{{ $index + 1 }}</span>
+                                    <span class="jugador">
+                                        @if(item.profiles; as profile){ {{ profile.nombre }} } @else { Anónimo }
+                                    </span>
+                                    <span class="tiempo">{{ item.tiempo }}s</span>
+                                    <span class="score" [ngClass]="item.resultado === 'victoria' ? 'text-success' : 'text-danger'">
+                                        {{ item.resultado === 'victoria' ? 'Victoria' : 'Derrota' }}
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                } @else {
+                    <div class="ranking-container"><p class="sin-datos">Sin partidas registradas</p></div>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="game-card">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                    <img src="imagenes/mayor_menor.jpg" alt="Mayor Menor" style="width: 50px; margin: 0;">
+                    <h3 class="m-0">Mayor o Menor</h3>
+                </div>
+                
+                @if(rankingMayorMenor.length > 0){
+                    <div class="ranking-container">
+                        <div class="ranking-header">
+                            <span>Pos</span>
+                            <span>Jugador</span>
+                            <span>Tiempo</span>
+                            <span>Puntaje</span>
+                        </div>
+                        <div class="ranking-lista">
+                            @for(item of rankingMayorMenor.slice(0,5); track $index){
+                                <div class="ranking-item">
+                                    <span class="posicion">{{ $index + 1 }}</span>
+                                    <span class="jugador">
+                                        @if(item.profiles; as profile){ {{ profile.nombre }} } @else { Anónimo }
+                                    </span>
+                                    <span class="tiempo">-</span>
+                                    <span class="score text-primary">{{ item.puntaje }} pts</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                } @else {
+                    <div class="ranking-container"><p class="sin-datos">Sin partidas registradas</p></div>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="game-card">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                    <img src="imagenes/preguntados_2.png" alt="Preguntados" style="width: 50px; margin: 0;">
+                    <h3 class="m-0">Preguntados</h3>
+                </div>
+                
+                @if(rankingPreguntados.length > 0){
+                    <div class="ranking-container">
+                        <div class="ranking-header">
+                            <span>Pos</span>
+                            <span>Jugador</span>
+                            <span>Tiempo</span>
+                            <span>Aciertos</span>
+                        </div>
+                        <div class="ranking-lista">
+                            @for(item of rankingPreguntados.slice(0,5); track $index){
+                                <div class="ranking-item">
+                                    <span class="posicion">{{ $index + 1 }}</span>
+                                    <span class="jugador">
+                                        @if(item.profiles; as profile){ {{ profile.nombre }} } @else { Anónimo }
+                                    </span>
+                                    <span class="tiempo">{{ item.tiempo }}s</span>
+                                    <span class="score text-success">{{ item.aciertos }}/10</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                } @else {
+                    <div class="ranking-container"><p class="sin-datos">Sin partidas registradas</p></div>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="game-card">
+                <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                    <img src="imagenes/juego.jpg" alt="Compatibilidad" style="width: 50px; margin: 0;">
+                    <h3 class="m-0">Compatibilidad</h3>
+                </div>
+                
+                @if(rankingCompatibilidad.length > 0){
+                    <div class="ranking-container">
+                        <div class="ranking-header">
+                            <span>Pos</span>
+                            <span>Jugador</span>
+                            <span>Tiempo</span>
+                            <span>Afinitud</span>
+                        </div>
+                        <div class="ranking-lista">
+                            @for(item of rankingCompatibilidad.slice(0,5); track $index){
+                                <div class="ranking-item">
+                                    <span class="posicion">{{ $index + 1 }}</span>
+                                    <span class="jugador">
+                                        @if(item.profiles; as profile){ {{ profile.nombre }} } @else { Anónimo }
+                                    </span>
+                                    <span class="tiempo">-</span>
+                                    <span class="score text-danger">{{ item.porcentaje }}%</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                } @else {
+                    <div class="ranking-container"><p class="sin-datos">Sin partidas registradas</p></div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
