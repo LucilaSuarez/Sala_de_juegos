@@ -3,26 +3,20 @@
     gap: 1.5rem;
 }
 
-/* 🔥 ahora es card, no solo botón */
-
 .game-card {
     min-height: 330px;
     background: linear-gradient(180deg, #ebedf0, #d8dbde);
     color: #263448;
-
     border-radius: var(--uh-radius);
     padding: 2rem;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-
     box-shadow: 0 8px 20px #263448;
     transition: all 0.2s ease;
     cursor: pointer;
-
     height: 100%; 
 }
 

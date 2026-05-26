@@ -1,0 +1,102 @@
+.contenedor-juego{
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px #263448;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.carta img{
+    width: 220px;
+    height: auto;
+}
+
+.botones{
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.botones button{
+    width: 140px;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.botones button:hover{
+    transform: scale(1.05);
+}
+
+.puntaje{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.modal-overlay{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-fin{
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px #263448;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-fin h2{
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.modal-fin p{
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.modal-botones{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-botones button:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px){
+    .contenedor-juego{
+        width: 90%;
+        padding: 20px;
+    }
+
+    .carta img{
+        width: 180px;
+    }
+
+    .botones{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .botones button{
+        width: 100%;
+    }
+}

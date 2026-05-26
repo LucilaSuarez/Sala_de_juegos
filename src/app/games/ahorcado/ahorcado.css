@@ -1,0 +1,132 @@
+.contenedor-juego {
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px #263448;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.pantalla-ahorcado img {
+    width: 220px;
+    height: auto;
+}
+
+/* Guiones bajos */
+.palabra-secreta {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 6px;
+    color: #1f2937;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.teclado {
+    display: grid;
+    /* abecedario en 7 columnas */
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 10px;
+    width: 100%;
+}
+
+.teclado button {
+    padding: 10px 0;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    color: #1f2937;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+/* Efecto hover igual al tuyo */
+.teclado button:hover:not(:disabled) {
+    transform: scale(1.08);
+    background-color: #1f2937;
+    color: white;
+    border-color: #1f2937;
+}
+
+/* Cuando la letra ya fue seleccionada */
+.teclado button:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-fin {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px #263448;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-fin h2 {
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.modal-fin p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.modal-botones {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-botones button:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+    .contenedor-juego {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .pantalla-ahorcado img {
+        width: 170px;
+    }
+
+    .palabra-secreta {
+        font-size: 1.6rem;
+        letter-spacing: 4px;
+    }
+
+    /* Responsive para celus */
+    .teclado {
+        gap: 6px;
+    }
+    
+    .teclado button {
+        padding: 8px 0;
+        font-size: 0.95rem;
+        border-radius: 6px;
+    }
+}

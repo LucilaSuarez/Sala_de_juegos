@@ -1,59 +1,104 @@
-# Playroom
+# 🎮 Playroom - Sala de Juegos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Proyecto realizado para la materia **Programación IV** - UTN Avellaneda.
 
-## Development server
+## 👩‍💻 Alumna
 
-To start a local development server, run:
+* Lucila Micaela Suarez
+
+---
+
+# 🚀 Deploy
+
+🔗 Próximamente disponible en Vercel
+
+---
+
+# 🛠️ Tecnologías utilizadas
+
+* Angular 20
+* TypeScript
+* HTML5
+* CSS3
+* Bootstrap 5
+* Supabase
+* Git & GitHub
+* Vercel
+
+---
+
+# 📌 Descripción del proyecto
+
+Sala de juegos desarrollada con Angular y Supabase.
+La aplicación cuenta con sistema de autenticación, chat en tiempo real y distintos juegos interactivos.
+
+---
+
+# ✅ Sprint 1
+
+## Funcionalidades
+
+* Estructura inicial del proyecto
+* Header y Footer
+* Home
+* Quién Soy
+* Login
+* Registro
+* Navegación entre componentes
+
+---
+
+# ✅ Sprint 2
+
+## Funcionalidades
+
+* Registro de usuarios
+* Persistencia de datos en Supabase
+* Inicio automático de sesión luego del registro
+* Protección de rutas
+* Manejo de autenticación
+* Validaciones de formularios
+
+---
+
+# 🚧 Sprint 3
+
+## Funcionalidades
+
+* Sala de chat en tiempo real
+* Mensajes persistidos en Supabase
+* Diferenciación de mensajes propios
+* Juego Ahorcado
+* Juego Mayor o Menor
+
+---
+
+# 📂 Estructura del proyecto
 
 ```bash
-ng serve
+src/app/
+│
+├── components/
+├── games/
+├── guards/
+├── models/
+├── services/
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+# 🔐 Base de datos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+El proyecto utiliza Supabase para:
 
-```bash
-ng generate component component-name
-```
+* autenticación
+* almacenamiento de usuarios
+* mensajes del chat
+* resultados de juegos
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+# 📌 Estado del proyecto
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+🚧 En desarrollo
