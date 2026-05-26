@@ -38,11 +38,43 @@ export interface Carta {
 }
 
 // Interfaz para resultados del juego Ahorcado
-export interface AhorcadoResultado {
+export interface Ahorcado {
     id?: string;  
     user_id: string;  
     cantidad_letras: number;
     tiempo: number;  
     resultado: 'victoria' | 'derrota';  
+    created_at?: string;
+}
+
+// Interfaz para resultados del Preguntados
+export interface Preguntados {
+    id?: string;
+    user_id: string;
+    aciertos: number;
+    tiempo: number;
+    created_at?: string;
+}
+
+export interface TriviaResponse {
+    response_code: number;
+    results: TriviaQuestion[];
+}
+
+export interface TriviaQuestion {
+    category: string;
+    type: string;
+    difficulty: string;
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
+    opcionesMezcladas?: string[]; 
+}
+
+// Interfaz para resultados del juego Compatibilidad
+export interface Compatibilidad {
+    id?: string;
+    user_id: string;
+    porcentaje: number;
     created_at?: string;
 }

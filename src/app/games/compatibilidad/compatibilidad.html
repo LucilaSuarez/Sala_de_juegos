@@ -1,0 +1,68 @@
+<div class="contenedor-juego">
+    <h4>Compatibilidad 💖</h4>
+
+    @if (calculando) {
+        <div class="d-flex flex-column align-items-center gap-3 py-4">
+            <div class="spinner-border text-danger" role="status"></div>
+            <p class="puntaje m-0">Consultando a los astros...</p>
+        </div>
+    }
+
+    @if (!calculando && !juegoTerminado) {
+        <p class="text-muted text-center fs-6">
+            Ingresa dos nombres para calcular su nivel de afinidad secreta.
+        </p>
+
+        <div class="w-100 d-flex flex-column gap-3">
+            <div class="form-group w-100">
+                <label class="fw-semibold text-dark mb-1">Tu Nombre:</label>
+                <input 
+                    type="text" 
+                    class="form-control text-center py-2" 
+                    placeholder="Escribe el primer nombre"
+                    [(ngModel)]="nombre1">
+            </div>
+
+            <div class="form-group w-100">
+                <label class="fw-semibold text-dark mb-1">Su Nombre:</label>
+                <input 
+                    type="text" 
+                    class="form-control text-center py-2" 
+                    placeholder="Escribe el segundo nombre"
+                    [(ngModel)]="nombre2">
+            </div>
+        </div>
+
+        <div class="botones mt-2">
+            <button 
+                class="btn btn-dark" 
+                [disabled]="!nombre1.trim() || !nombre2.trim()"
+                (click)="calcularCompatibilidad()">
+                Calcular 💘
+            </button>
+        </div>
+    }
+</div>
+
+@if (juegoTerminado) {
+    <div class="modal-overlay">
+        <div class="modal-fin">
+            <h2>¡Resultado!</h2>
+            
+            <h1 class="display-2 fw-bold text-danger my-3">
+                {{ porcentajeResultado }}%
+            </h1>
+
+            <p class="text-dark px-2 fw-medium">{{ resultadoMensaje }}</p>
+            
+            <div class="modal-botones mt-4">
+                <button class="btn btn-dark" (click)="reiniciarJuego()">
+                    Probar otro
+                </button>
+                <button class="btn btn-dark" routerLink="/home">
+                    Ir al Home
+                </button>
+            </div>
+        </div>
+    </div>
+}

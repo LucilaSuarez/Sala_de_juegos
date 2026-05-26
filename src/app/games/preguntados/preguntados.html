@@ -1,0 +1,67 @@
+<div class="contenedor-juego">
+    <h4>Preguntados 🧠</h4>
+
+    @if (cargando()) {
+        <div class="d-flex flex-column align-items-center gap-3 py-4">
+            <div class="spinner-border text-dark" role="status"></div>
+            <p class="puntaje m-0">Descargando preguntas...</p>
+        </div>
+    }
+
+    @if (!cargando() && !juegoTerminado && preguntaActual) {
+        
+        <div class="botones">
+            <span> Pregunta {{ indiceActual + 1 }} | {{ preguntas.length }}</span>
+            <span>⏱️ {{ tiempoSegundos }}s</span>
+        </div>
+
+        <div class="categoria-badge">
+            {{ preguntaActual.category }}
+        </div>
+
+        <div class="pregunta-texto">
+            {{ preguntaActual.question }}
+        </div>
+
+        <div class="opciones-grid">
+            @for (opcion of preguntaActual.opcionesMezcladas; track $index) {
+                <button
+                    type="button"
+                    [disabled]="respondido"
+                    (click)="verificarRespuesta(opcion)"
+                    [ngClass]="{
+                        'correcta': respondido && opcion === preguntaActual.correct_answer,
+                        'incorrecta': respondido && opcion === opcionSeleccionada && opcion !== preguntaActual.correct_answer
+                    }">
+                    {{ opcion }}
+                </button>
+            }
+        </div>
+
+        <div class="puntaje">
+            Aciertos: {{ aciertos }}
+        </div>
+    }
+</div>
+
+@if (juegoTerminado) {
+    <div class="modal-overlay">
+        <div class="modal-fin">
+            <h2>
+                {{ aciertos >= 6 ? '¡Excelente Partida!' : '¡Buen Intento!' }}
+            </h2>
+            <p>{{ resultadoMensaje }}</p>
+            <p style="font-size: 1rem; color: #4b5563;">
+                Tiempo total: {{ tiempoSegundos }}s
+            </p>
+            <div class="modal-botones">
+                <button class="btn btn-dark" (click)="iniciarNuevaPartida()">
+                    Volver a jugar
+                </button>
+                <button class="btn btn-dark" routerLink="/home">
+                    Ir al Home
+                </button>
+            </div>
+        </div>
+    </div>
+}
